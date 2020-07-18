@@ -1,1 +1,2 @@
-document.write('<h1>Sou um teste</h1>');
+
+document.write('<p>Testando a aplicação</p>')
