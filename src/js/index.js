@@ -22,6 +22,7 @@
 //      document.write('Você digitou um numero menor que 5');
 //  }
 
+
 //  switch (numero) {
  
 //     case 10:
@@ -96,6 +97,11 @@
  * 6º Aprensentar essas informação na tela para o usuario.
  * 7º Subir tudo no github.
  * 
+ * Hahaha pegadinha do malandro
+ * fazer um case onde eu passe um numero e ele me retorne conforme os cases abaixo:
+ * 
+ * Exemplo:
+ * numero < 5 && numero > 0 -> você digitou um numero entre 0 e 5.
  * 
  */
 
@@ -188,30 +194,30 @@
 
 
 
-let numero = 10;
-let produtoA = {descricao:'Produto A', quantidade: 10};
+// let numero = 10;
+// let produtoA = {descricao:'Produto A', quantidade: 10};
 
-document.write(numero);
-document.write(JSON.stringify(produtoA));
-document.write('<br>');
+// document.write(numero);
+// document.write(JSON.stringify(produtoA));
+// document.write('<br>');
 
-let numero1 = numero;
-// let produtoB = produtoA;
-// Faz merge dos objetos.
-let produtoB = Object.assign({}, produtoA);
+// let numero1 = numero;
+// // let produtoB = produtoA;
+// // Faz merge dos objetos.
+// let produtoB = Object.assign({}, produtoA);
 
-numero1 = 15;
-produtoB.quantidade = 11;
+// numero1 = 15;
+// produtoB.quantidade = 11;
 
-document.write(numero1);
-document.write(JSON.stringify(produtoB));
+// document.write(numero1);
+// document.write(JSON.stringify(produtoB));
 
-document.write('<br>');
-document.write('<br>');
+// document.write('<br>');
+// document.write('<br>');
 
-document.write(numero);
-document.write(JSON.stringify(produtoA));
-document.write('<br>');
+// document.write(numero);
+// document.write(JSON.stringify(produtoA));
+// document.write('<br>');
 
 
 v

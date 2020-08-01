@@ -1,0 +1,61 @@
+/* Aqui só aceita esse tipo de comentario 
+CSS é aplicado em cascata.
+
+Pode ser aplicado em:
+Tags >> Qualquer uma h1, img, input
+#ids  >> Todo id no css tem um # na frente.
+.class >> Toda class no CSS tem um . na frente
+querySelector
+*/
+.caixa-login{
+    width: 220px;
+    background-color: #fafafa;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 110px;
+    text-align: center;
+    border: 2px solid #ddd;
+    color: #2429AD;
+    padding: 25px;
+    padding-top: 0;
+}
+
+.grupo{
+    text-align: start;
+    margin-bottom: 25px;
+}
+
+input {
+    border: 0;
+    background-color: #fafafa;
+    border-bottom: 2px solid #2429AD;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 6px;
+    font-weight: 600;
+    color: #2429AD;
+}
+
+#btn-entrar {
+    width: 100%; 
+    background-color: #ddd;
+    padding: 15px;
+    border: 0;
+    color: #2429AD;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+button:hover{
+    background-color: #ccc;  
+    cursor: pointer;
+}
+
+button:focus, input:focus{
+ outline: none;
+}
+
+.logo {
+    font-size: 50px;
+}
+

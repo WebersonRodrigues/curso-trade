@@ -1,0 +1,20 @@
+Sempre aplicar o EPER.
+Entender, Planejar, Executar e Revisar.
+
+Tela de login:
+
+1º Criar o HTML da tela de login. OK.
+2º Criar o arquivo Css e importar. OK
+3º Criar a caixa de login. OK
+4º Trocar as cores de fundo da caixa e da tela. OK
+5º Ajustar os inputs. OK
+6º Criar o layout do botão. OK
+
+Bug: Remover a caixa que gera nos inputs e butons quando estão com focus. OK
+
+--- plus plus ---
+1º Quando passar o mouse sobre o botão, quero que ele de um realce. OK
+2º Almentar a fonte dos inputs e colocar na cor primaria.
+
+
+
