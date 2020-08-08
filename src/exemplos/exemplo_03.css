@@ -1,0 +1,52 @@
+/* Resetar o CSS do navegador */
+html,body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+
+    display: grid;
+    grid-template-rows: 10vh 40vh  calc(45vh - 75px) 5vh; 
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: "h h h"
+                         "a mc s"
+                         "a mb s"
+                         "f f f";
+    grid-gap: 25px;
+
+}
+
+header{
+    background-color: yellow;
+    grid-area: h;
+    
+}
+aside{
+    background-color: green;
+    grid-area: a;
+
+}
+
+section{
+    background-color: blue;
+    grid-area: s;
+
+}
+div.main-cima{
+    background-color: #343434;
+    grid-area: mc;
+}
+div.main-baixo{
+    background-color: orange;
+    grid-area: mb;
+}
+
+footer{
+    background-color: brown;
+    grid-area: f;
+ 
+}

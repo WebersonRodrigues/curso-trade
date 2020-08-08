@@ -1,0 +1,41 @@
+/* Resetar o CSS do navegador */
+html,body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+
+    display: grid;
+    grid-template-rows: 10vh 80vh 10vh; 
+    grid-template-columns: 10% 90%;
+    grid-template-areas: "h h"
+                         "a m"
+                         "f f";
+
+}
+
+header{
+    background-color: yellow;
+    grid-area: h;
+    
+}
+aside{
+    background-color: green;
+    grid-area: a;
+
+}
+main{
+    background-color: #343434;
+    grid-area: m;
+
+}
+
+footer{
+    background-color: brown;
+    grid-area: f;
+ 
+}

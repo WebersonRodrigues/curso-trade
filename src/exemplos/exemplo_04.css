@@ -1,0 +1,68 @@
+/* Resetar o CSS do navegador */
+html,body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+
+    display: grid;
+    grid-template-rows: 10vh 40vh  calc(45vh - 75px) 5vh; 
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr;
+    grid-template-areas: "h h h h h h"
+                         "a mce mce mcd mcd s"
+                         "a mb1 mb2 mb3 mb4 s"
+                         "f f f f f f";
+    grid-gap: 25px;
+
+}
+
+header{
+    background-color: yellow;
+    grid-area: h;
+    
+}
+aside{
+    background-color: green;
+    grid-area: a;
+
+}
+
+section{
+    background-color: blue;
+    grid-area: s;
+
+}
+div.main-cima.esquerda{
+    background-color: #343434;
+    grid-area: mce;
+}
+div.main-cima.direita{
+    background-color: #343434;
+    grid-area: mcd;
+}
+div.main-baixo-1{
+    background-color: orange;
+    grid-area: mb1;
+}
+div.main-baixo-2{
+    background-color: orange;
+    grid-area: mb2;
+}
+div.main-baixo-3{
+    background-color: orange;
+    grid-area: mb3;
+}
+div.main-baixo-4{
+    background-color: orange;
+    grid-area: mb4;
+}
+
+footer{
+    background-color: brown;
+    grid-area: f;
+ 
+}
