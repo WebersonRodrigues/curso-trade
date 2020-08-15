@@ -1,0 +1,108 @@
+
+:root {
+    --color-primary: rgb(0,128,0);
+    --color-secundary: rgb(0,91,0);
+    --color-global: #121214;
+    --color-font: rgb(255,255,250);
+}
+
+html,body{
+    margin:0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* 5 linhas e 3 colunas \o/
+   5 linhas e 5 colunas
+ */
+.container{
+    background-color: var(--color-global);
+    color: var(--color-font);
+
+    display: grid;
+    grid-template-rows: 25vh 20vh 20vh 20vh calc(15vh - 20px);
+    grid-template-columns: 200px 200px 200px; 
+    grid-template-areas: "h  h  h"
+                         "v1 v2 v3"
+                         "v4 v5 v6"
+                         "v7 v8 v9"
+                         "f  f  f";
+
+    grid-gap: 5px;
+    justify-content: center;
+}
+
+.container > div {
+    background-color: var(--color-primary);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.container > div:hover, 
+#btn-jogar:hover {
+    background-color: var(--color-secundary);
+    cursor: pointer;
+}
+
+
+
+
+header{
+    grid-area: h;
+}
+
+footer {
+    grid-area: f;
+    justify-self: center;
+    align-self: center;
+}
+
+.opcoes-jogo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10vh 10vh;
+    grid-template-areas: "gpx bj"
+                         "gpo bj";
+    padding-top: 15px;
+}
+
+.grupo-opcoes.x{
+    grid-area: gpx;
+    justify-self: start;
+    margin-bottom: 10px;
+}
+
+.grupo-opcoes.o{
+    grid-area: gpo;
+    justify-self: start;
+    margin-bottom: 10px;
+}
+
+#btn-jogar {
+    grid-area: bj;
+    justify-self: end;
+    align-self: center;
+    background-color: var(--color-primary);
+    color: var(--color-font);
+    border: 0;
+    font-size: 20px;
+    font-weight: 700;
+    width: 200px;
+    height: 100px;
+}
+
+input {
+    border: 0;
+    border: 1px solid var(--color-primary);
+    padding: 6px;
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-primary);;
+}
+
