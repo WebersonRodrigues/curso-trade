@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+
+        #meu-id{
+            background-color: green;
+        }
+
+        h1.teste.teste2{
+            background-color: red;
+        }
+
+        h1{
+            /* Jamais fazer isso!!!!!!!! */
+            /* background-color: blue !important; */
+            background-color: blue;
+        }
+
+        h1.teste{
+            background-color: purple;
+        }
+
+/* 
+A  especificidade é calculada da seguinte forma: 
+
+ID >> Vale 100 pontos.
+Class >> Vale 10 pontos.
+Tag >> Vale 1 ponto
+
+#teste >> 100
+
+#teste.teste >> 110
+
+.teste.teste2 >> 20;
+
+h1 >> 1
+
+h1.teste >> 11
+
+h1.teste.teste2 >> 21
+
+ */
+    </style>
+    
+    <h1>Exemplo 1</h1>
+    <h1 class="teste">Exemplo 2</h1>
+    <h1 class="teste teste2">Exemplo 3</h1>
+    <h1 id="meu-id" class="teste">Exemplo 4</h1>
+
+</body>
+</html>
