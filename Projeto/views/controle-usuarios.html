@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/controle-usuarios.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-sm navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">Trade</a>
+
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Usuários</a>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Relatórios
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Usuários</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="titulo">Controle de usuários</h2>
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <button id="btn-adicionar-usuario" class="btn btn-primary">Adicionar usuário</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>E-mail</th>
+              <th>Função</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+           
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="modal-adicionar-usuario">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Adicionar usuário</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+           <div class="row">
+             <div class="col-sm-6">
+              <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome">
+              </div>
+             </div>
+
+             <div class="col-sm-6">
+              <div class="form-group">
+                <label for="sobrenome">Sobrenome</label>
+                <input type="text" class="form-control" id="sobrenome">
+              </div>
+             </div>
+           </div>
+           
+           <div class="row">
+             <div class="col-sm-7">
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+             </div>
+
+             <div class="col-sm-5">
+              <div class="form-group">
+                <label for="funcao">Função</label>
+                <select class="form-control" id="funcao">
+                  <option>Administrador</option>
+                  <option>Gerente</option>
+                  <option>Vendedor</option>
+                  <option>Caixa</option>
+                </select>
+              </div>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="col-sm-12">
+              <div class="form-group">
+                <label for="observacao">Observação</label>
+                <textarea class="form-control" rows="4" id="observacao"></textarea>
+              </div>
+             </div>
+           </div>
+
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script src="../js/models/Usuario.js"></script>
+  <script src="../js/api/usuario-api.js"></script>
+  <script src="../js/controle-usuarios.js"></script>
+</body>
+
+</html>

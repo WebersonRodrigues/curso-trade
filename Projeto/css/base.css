@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
+
+:root{
+    --color-primary: #4E0075;
+    --color-secondary: #7900B5;
+    --color-font: #fff;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.titulo{
+    color: #767676;
+}
+
+table.table{
+    border: 1px solid #ddd;
+    font-size: 14px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+table.table thead tr th {
+    color: #767676; 
+}
+table.table thead tr th:hover {
+    color: #343434; 
+}
+
+.btn{
+    min-width: 90px;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);   
+    color: var(--color-font); 
+    border-color: var(--color-primary);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus, 
+.btn-primary:not(:disabled):not(.disabled):active:focus, 
+.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem var(--color-primary);  
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, 
+.btn-primary:not(:disabled):not(.disabled):active, 
+.show>.btn-primary.dropdown-toggle,
+.btn-outline-primary:hover {
+    color: var(--color-font); 
+    background-color: var(--color-primary);  
+    border-color: var(--color-primary);  
+}
+
+.btn-primary:hover {
+    color: var(--color-font); 
+    background-color: var(--color-secondary); 
+    border-color: var(--color-primary); 
+}
+
+
+
+.btn-outline-primary {
+    color: var(--color-primary); ; 
+    background-color: var(--color-font); 
+    border-color: var(--color-primary); 
+}
+
+nav.navbar,
+.modal-header {
+    color: var(--color-font); 
+    background-color: var(--color-primary);  
+}
+button.close,
+button.close:hover {
+    color: var(--color-font);  
+}
+
+textarea {
+    resize: none;
+}
+
+.form-control:focus {
+    border-color: var(--color-primary);  
+    outline: 0;
+    box-shadow: 0 0 0 1px var(--color-primary);  
+}
+
+
+.modal-dialog {
+    max-width: 700px;
+    margin: 1.75rem auto;
+}
