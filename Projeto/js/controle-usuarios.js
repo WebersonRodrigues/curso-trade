@@ -1,30 +1,109 @@
-
-
-
 // Podemos criar um modulo para resolver problemas de acessibilidade.
 var moduloControleUsuario = (function(){
     // Aqui vou colocar todo meu código.
     // Aqui tudo é primvado.
     let btnAdicionar = document.getElementById('btn-adicionar-usuario');
     let tabelaUsuarios = document.querySelector('table.table tbody');
+    let listaUsuariosBKP = [];
 
+    let idUsuarioAtual = undefined;
+
+    let modal = {
+      nome: document.querySelector('#nome'),
+      sobrenome: document.querySelector('#sobrenome'),
+      email: document.querySelector('#email'),
+      funcao: document.querySelector('#funcao'),
+      observacao: document.querySelector('#observacao'),
+      btnSalvar: document.querySelector('#btn-salvar'),
+      btnCancelar: document.querySelector('#btn-cancelar'),
+    };
 
     btnAdicionar.addEventListener('click', () => {
         _abrirModal();
-       
     });
+
+    modal.btnCancelar.addEventListener('click', () => {
+      _fecharModal();
+    })
+
+    modal.btnSalvar.addEventListener('click', () => {
+      
+      var usuario = _obterUsuarioModal();
+   
+      // Aqui verifico se o modelo é valido
+      if(!usuario.modeloValido()){
+        swal("Atenção!", "Favor informar os campos obrigatórios", "error");
+        return;
+      }
+      // Aqui crio no backend.\
+
+      
+      if(idUsuarioAtual){
+        usuario.id =  idUsuarioAtual;
+       atualizar(usuario);
+      }else{
+        cadastrar(usuario);
+      }
+
+    })
+
+    function cadastrar(usuario){
+      apiUsuario.cadastrar(usuario)
+      .then((response) => {
+        // Uma forma de fazer.... 99% das vezes vai usar desta forma.
+        listaUsuariosBKP.push(new Usuario(response));
+        _popularTabela(listaUsuariosBKP)
+
+        // obterUsuarios();
+        swal("Usuário", "Cadastrado com sucesso!", "success");
+        _fecharModal();
+        _limparModal();
+      })
+    }
+
+    function atualizar(usuario){
+      apiUsuario.editar(usuario)
+      .then(() => {
+        obterUsuarios();
+
+        swal("Usuário", `${usuario.nome}  atualizado com sucesso!`, "success");
+        _fecharModal();
+        _limparModal();
+      })
+    }
+
+    function _limparModal(){
+      modal.nome.value = "";
+      modal.sobrenome.value = "";
+      modal.email.value = "";
+      modal.funcao.value = "";
+      modal.observacao.value = "";
+      idUsuarioAtual = undefined;
+    }
+
+    function _obterUsuarioModal(){
+      return new Usuario({
+        nome: modal.nome.value,
+        sobrenome : modal.sobrenome.value,
+        email: modal.email.value,
+        funcao: modal.funcao.value,
+        observacao: modal.observacao.value   
+      });
+    }
 
     function obterUsuarios(){
       apiUsuario.obterTodos()
       .then(response => {
-          console.log(response);
-        //aqui qu eu vou popular a tabela
-        _popularTabela(response.map(elemento => new Usuario(elemento)));
+        listaUsuariosBKP = response.map(elemento => new Usuario(elemento));
+        _popularTabela(listaUsuariosBKP);
       })
-      .catch(error => alert('Deu ruim...'))
+      .catch(error => swal("Ops", `Não foi possível obter todos os usuários :(`, "error"));
     }
 
     function _popularTabela(listaUsuarios){
+
+        tabelaUsuarios.textContent = "";
+
         listaUsuarios.map(u => {
             var tr = document.createElement('tr');
 
@@ -42,10 +121,10 @@ var moduloControleUsuario = (function(){
             tdFuncao.textContent = u.funcao;
 
             tdAcoes.innerHTML = `
-            <button class="btn btn-outline-primary">
+            <button class="btn btn-outline-primary" onClick="moduloControleUsuario.editar(${u.id})">
             <i class="fas fa-pencil-alt"></i> Editar
           </button>
-          <button class="btn btn-outline-primary">
+          <button class="btn btn-outline-primary" onClick="moduloControleUsuario.excluir(${u.id})">
             <i class="fas fa-trash-alt"></i> Excluir
           </button>
             `;
@@ -61,8 +140,6 @@ var moduloControleUsuario = (function(){
 
         })
     }
-
-
     // O _ é uma convenção para programadores que não devemos colocar a função publica.
     function _abrirModal(){
       $('#modal-adicionar-usuario').modal({backdrop: "static"});  
@@ -72,18 +149,56 @@ var moduloControleUsuario = (function(){
         $('#modal-adicionar-usuario').modal('hide');  
     }
 
-    // var nome = "Mateus"
-    // function teste(){
-    //     alert( 'teste')
-    // }
+    function excluir(idUsuario){
+
+      swal({
+        title: "Deseja excluir o usuário?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        buttons: {
+          confirm: {
+            text: "Confirmar",
+            value: true,
+            className: "btn btn-primary"
+          },
+        },
+
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          apiUsuario.deletar(idUsuario)
+          .then((response) => {
+            swal("Usuário", `Excluido com sucesso!`, "success");
+            obterUsuarios();
+          })
+          .catch(error => swal("Ops", `Houve um problema ao excluir o usuário :(`, "success"))
+      
+        }
+      });
+
+    }
+
+    function _preencherModal(usuario){
+      modal.nome.value = usuario.nome || "";
+      modal.sobrenome.value = usuario.sobrenome || "";
+      modal.email.value = usuario.email || "";
+      modal.funcao.value = usuario.funcao || "Administrador";
+      modal.observacao.value = usuario.observacao || "";
+    }
+    
+    function editar(idUsuario){
+      var usuario = listaUsuariosBKP.filter(u => u.id == idUsuario)[0];
+     
+      idUsuarioAtual = idUsuario;
+      _preencherModal(usuario);
+      _abrirModal();
+    }
 
     obterUsuarios();
     // Aqui eu deixo publico oque eu quero que seja chamado externamente.
     return {
-        nome,
-        // teste
-     
+        editar,
+        excluir    
     }
-
-
 })()
