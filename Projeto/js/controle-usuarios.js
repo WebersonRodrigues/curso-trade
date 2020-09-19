@@ -90,7 +90,6 @@ var moduloControleUsuario = (function(){
         observacao: modal.observacao.value   
       });
     }
-
     function obterUsuarios(){
       apiUsuario.obterTodos()
       .then(response => {
@@ -99,7 +98,6 @@ var moduloControleUsuario = (function(){
       })
       .catch(error => swal("Ops", `Não foi possível obter todos os usuários :(`, "error"));
     }
-
     function _popularTabela(listaUsuarios){
 
         tabelaUsuarios.textContent = "";
