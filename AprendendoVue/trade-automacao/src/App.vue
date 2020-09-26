@@ -7,7 +7,6 @@
 
 <script>
 import Menu from '@/components/Menu';
-
   export default {
   // Aqui dentro eu escrevo vue.... frsrsrsrs
     components:{
