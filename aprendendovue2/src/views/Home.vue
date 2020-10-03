@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h1>Estou na Home</h1>
+    <BaseLayout>
+        <template v-slot:header>
+          <h1>Estou no header</h1>
+        </template>
+
+        <h1>Estou denro do slot</h1>
+
+        <template v-slot:footer>
+          <h1>Estou no footer</h1>
+        </template>
+    </BaseLayout>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+
+import BaseLayout from  '@/components/BaseLayout';  
 
 
 export default {
   name: 'Home',
   components: {
- 
+    BaseLayout
   }
 }
 </script>
