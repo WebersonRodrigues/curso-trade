@@ -9,7 +9,7 @@
 
     <v-row>
       <v-col cols="12" sm="12">
-        <v-btn>Adicionar</v-btn>
+        <v-btn @click="dialog = true" color="primary">Adicionar</v-btn>
       </v-col>
     </v-row>
 
@@ -26,81 +26,147 @@
               hide-details
             ></v-text-field>
           </v-card-title>
-          <v-data-table :headers="colunas" :items="itens" :search="pesquisa">
+          <v-data-table :headers="colunas" :items="produtos" :search="pesquisa">
             <template v-slot:item.actions="{ item }">
-                <MenuOpcoes @onClick="deleteItem"  :a="item" :items="items"/>
+              <MenuOpcoes
+                @onClick="deleteItem"
+                :a="item"
+                :items="opcoesProdutos"
+              />
             </template>
           </v-data-table>
         </v-card>
       </v-col>
     </v-row>
+
+    <v-row justify="center">
+      <v-dialog v-model="dialog" persistent max-width="600px">
+        <v-card>
+          <v-card-title>
+            <span class="titulo-pagina">Adicionar produto</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12" sm="3">
+                  <v-text-field
+                    label="Código"
+                    v-model="produto.codigo"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" sm="9">
+                  <v-text-field
+                    label="Nome"
+                    v-model="produto.nome"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" sm="4">
+                  <v-text-field
+                    label="Valor unitário"
+                    v-model="produto.valorUnitario"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="4">
+                  <v-text-field
+                    label="Quantidade estoque"
+                    v-model="produto.quantidadeEstoque"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" sm="4">
+                  <v-select
+                    :items="['Ativo', 'Inativo']"
+                    v-model="produto.status"
+                    label="Status"
+                  ></v-select>
+                </v-col>
+
+                <v-col cols="12" sm="12">
+                  <v-textarea
+                    label="Observação"
+                    v-model="produto.observacao"
+                    no-resize
+                    rows="3"
+                    auto-grow
+                    outlined
+                  ></v-textarea>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <div class="mb-6">
+              <v-btn @click="salvar" color="primary">Salvar </v-btn>
+              <v-btn
+                class="mr-7 ml-2"
+                @click="dialog = false"
+                color="primary"
+                outlined
+                >Cancelar
+              </v-btn>
+            </div>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import MenuOpcoes from "../components/MenuOpcoes";
+import apiProdutos from "../api/produto-api";
+import {
+  OPCOES_PRODUTOS,
+  COLUNAS_TABELA_PRODUTOS,
+} from "../constants/controle-produto-constants";
+import Produto from "../models/Produto";
 
-import MenuOpcoes from '../components/MenuOpcoes';
 export default {
   name: "ControleDeProduto",
 
-  components:{
-    MenuOpcoes
+  components: {
+    MenuOpcoes,
+  },
+
+  created() {
+    apiProdutos
+      .obterTodos()
+      .then((response) => (this.produtos = response))
+      .catch((erro) => console.log(erro));
   },
 
   data() {
     return {
-       items: [
-        { id: 1, title: 'Editar', callback: () => { alert( 'Estou editando')} },
-        { id:2, title: 'Deletar', callback: () => { alert( 'Estou deletando')} },
-        { id:3, title: 'Movimentar', callback: () => { alert( 'Estou movimentando')} },
-        { id:5, title: 'Desativar', callback: () => { alert( 'Estou desabilitando')} },
-      ],
+      dialog: false,
+      opcoesProdutos: OPCOES_PRODUTOS,
       pesquisa: undefined,
-      opcoesItens: ["Teste 1", "Teste 2"],
-      itens: [
-        {
-          id: 1,
-          codigo: "000001",
-          descricao: "Produto A",
-          valorUnitario: "R$ 12,00",
-          quantidadeEstoque: 14,
-        },
-        {
-          id: 2,
-          codigo: "000002",
-          descricao: "Produto B",
-          valorUnitario: "R$ 15,00",
-          quantidadeEstoque: 35,
-        },
-        {
-          id: 3,
-          codigo: "000003",
-          descricao: "Produto C",
-          valorUnitario: "R$ 127,00",
-          quantidadeEstoque: 2,
-        },
-      ],
-      colunas: [
-        { text: "Codigo", value: "codigo" },
-        { text: "Descrição", value: "descricao" },
-        { text: "Valor Unitário", value: "valorUnitario" },
-        { text: "Quantidade", value: "quantidadeEstoque" },
-        { text: "", value: "actions", sortable: false },
-      ],
+      produtos: [],
+      colunas: COLUNAS_TABELA_PRODUTOS,
+      produto: new Produto(),
     };
   },
 
   methods: {
-    editItem(item) {
-      console.log(item);
-      alert("oi");
-    },
-    deleteItem(item) {
-      console.log(item);
-      // alert(item.title);
-      item.callback();
-    },
-  },
+
+    salvar(){
+
+      if(!this.produto.modeloValido()){
+        alert(`Favor informar os dados obrigatórios do produto.`)
+        return;
+      }
+
+      apiProdutos.cadastrar(this.produto)
+      .then(response => {
+        alert(`Produto ${response.nome} cadastrado com sucesso!`);
+        this.produtos.push(new Produto(response));
+        this.dialog = false;
+      })
+      .catch(error => alert('Deu ruim ...' + error))
+    }
+  }
 };
 </script>
 

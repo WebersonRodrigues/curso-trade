@@ -39,4 +39,9 @@ export default {
   .v-btn {
     text-transform: none;
   }
+
+  .v-btn.v-btn--contained.v-size--default.theme--light{
+    min-width: 90px;
+  }
+/* v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default primary--text */
 </style>

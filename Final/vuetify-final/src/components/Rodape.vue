@@ -1,5 +1,5 @@
 <template>
-    <v-footer app>
-        <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+  <v-footer app >
+    <span> Trade automação &copy; {{ new Date().getFullYear() }}</span>
+  </v-footer>
 </template>
